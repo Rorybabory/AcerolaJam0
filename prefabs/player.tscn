@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://8lhcq2wagsqa"]
+[gd_scene load_steps=10 format=3 uid="uid://8lhcq2wagsqa"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_1j2nc"]
 [ext_resource type="Environment" uid="uid://te10uitoyw3c" path="res://environment.tres" id="2_ck2ss"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ciftr5purgfqf" path="res://textures/vignette.png" id="4_qhg5m"]
 [ext_resource type="Texture2D" uid="uid://8y0uwp4ucjgl" path="res://textures/ammo_count.png" id="4_snkbr"]
 [ext_resource type="AudioStream" uid="uid://dl8efn7xht1be" path="res://sounds/gunshot.wav" id="6_8do5w"]
+[ext_resource type="Texture2D" uid="uid://cjm48qb5sk0sm" path="res://textures/crosshair.png" id="8_ee82l"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_65fle"]
 height = 1.9
@@ -50,3 +51,8 @@ position = Vector2(1034, 569)
 [node name="Audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_8do5w")
 volume_db = -14.991
+
+[node name="Crosshair" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("8_ee82l")

@@ -80,10 +80,12 @@ func _process(delta):
 		animPlayer.play("Armature|Reload")
 	if ((ammo <= 0 or Input.is_action_just_pressed("reload")) and reloading == false):
 		reloading = true;
+		$Crosshair.hide()
 	
 	if (reloading == true and animPlayer.current_animation_position > 1.7):
 		ammo = 10
 		reloading = false
+		$Crosshair.show()
 	$number.number = ammo
 
 
