@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dfd0f2fs14nka"]
+
+[ext_resource type="Texture2D" uid="uid://664vm8o7uugy" path="res://textures/fence.png" id="1_rcs0m"]
+
+[resource]
+albedo_texture = ExtResource("1_rcs0m")

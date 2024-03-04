@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://hxfggnpbj8m4"]
+
+[ext_resource type="PackedScene" uid="uid://ds80s2ghnm1yd" path="res://models/gun.fbx" id="1_ncorj"]
+
+[node name="Gun" instance=ExtResource("1_ncorj")]
+
+[node name="Skeleton3D" parent="RootNode/Armature" index="0"]
+bones/0/rotation = Quaternion(0.977497, -1.81459e-24, 1.75577e-17, 0.210948)
+bones/0/scale = Vector3(1, 1, 1)
+bones/1/rotation = Quaternion(0.210948, -2.75781e-07, -5.95149e-08, 0.977497)
+bones/3/rotation = Quaternion(0.911002, -4.53995e-25, 1.63633e-17, -0.412403)
+bones/3/scale = Vector3(1, 1, 1)
+bones/5/rotation = Quaternion(0.879473, -1.07124e-16, -7.32081e-18, 0.475949)
+bones/5/scale = Vector3(1, 1, 1)

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://8lhcq2wagsqa"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_1j2nc"]
+[ext_resource type="Environment" uid="uid://te10uitoyw3c" path="res://environment.tres" id="2_ck2ss"]
+[ext_resource type="PackedScene" uid="uid://ds80s2ghnm1yd" path="res://models/gun.fbx" id="3_sumk2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_65fle"]
+height = 1.9
+
+[node name="Player" type="CharacterBody3D"]
+wall_min_slide_angle = 0.647517
+script = ExtResource("1_1j2nc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.948463, 0)
+shape = SubResource("CapsuleShape3D_65fle")
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="head"]
+cull_mask = 1048573
+environment = ExtResource("2_ck2ss")
+current = true
+fov = 90.0
+
+[node name="Gun" parent="head/Camera3D" instance=ExtResource("3_sumk2")]
+transform = Transform3D(-0.78904, -0.20406, 7.12496e-08, -0.20406, 0.78904, 0, -6.89801e-08, -1.78395e-08, -0.815, 0.5, -0.5, -0.8)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_ck2ss")

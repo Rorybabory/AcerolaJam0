@@ -1,0 +1,11 @@
+[gd_resource type="Environment" load_steps=2 format=3 uid="uid://te10uitoyw3c"]
+
+[ext_resource type="Sky" uid="uid://dkjg5v7062ktw" path="res://sky.tres" id="1_w680k"]
+
+[resource]
+background_mode = 2
+sky = ExtResource("1_w680k")
+ambient_light_color = Color(0.74902, 0.74902, 0.74902, 1)
+ssao_enabled = true
+ssao_intensity = 3.64
+ssil_radius = 2.9

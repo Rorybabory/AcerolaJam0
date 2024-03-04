@@ -1,0 +1,98 @@
+[gd_scene load_steps=12 format=3 uid="uid://b4qv6xwtk4fuo"]
+
+[ext_resource type="PackedScene" uid="uid://8lhcq2wagsqa" path="res://prefabs/player.tscn" id="1_bswf1"]
+[ext_resource type="Material" uid="uid://dobwc8q83gryq" path="res://materials/paper.tres" id="2_abbep"]
+[ext_resource type="PackedScene" uid="uid://capghijdqqv6u" path="res://prefabs/tree.tscn" id="3_jolvg"]
+[ext_resource type="Material" uid="uid://bnso1v2cc5pla" path="res://materials/box.tres" id="4_di2kt"]
+[ext_resource type="ArrayMesh" uid="uid://uj3cba0t4vfn" path="res://models/woodbox.obj" id="5_23q5d"]
+[ext_resource type="Material" uid="uid://dfd0f2fs14nka" path="res://materials/fence.tres" id="6_og13i"]
+[ext_resource type="ArrayMesh" uid="uid://dei7vaqbxkj61" path="res://models/fence.obj" id="7_avqpa"]
+[ext_resource type="PackedScene" uid="uid://ddgtwfw3pooec" path="res://prefabs/ghost.tscn" id="8_38jox"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iy5ye"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hr7xp"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iid0r"]
+size = Vector3(0.969872, 1.06433, 0.960815)
+
+[node name="Scene" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_bswf1")]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+disable_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_iy5ye")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+material_override = ExtResource("2_abbep")
+mesh = SubResource("BoxMesh_hr7xp")
+
+[node name="Tree2" parent="." instance=ExtResource("3_jolvg")]
+transform = Transform3D(0.441913, 0, 0.897058, 0, 1, 0, -0.897058, 0, 0.441913, -4.85153, 0, -2.56172)
+
+[node name="Tree" parent="." instance=ExtResource("3_jolvg")]
+
+[node name="WoodBox2" type="StaticBody3D" parent="."]
+transform = Transform3D(0.789052, 0, 0.614327, 0, 1, 0, -0.614327, 0, 0.789052, -1.42519, 0, 1.30874)
+
+[node name="Woodbox" type="MeshInstance3D" parent="WoodBox2"]
+material_override = ExtResource("4_di2kt")
+mesh = ExtResource("5_23q5d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WoodBox2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00351334, 0.411062, -0.00799561)
+shape = SubResource("BoxShape3D_iid0r")
+
+[node name="WoodBox3" type="StaticBody3D" parent="."]
+transform = Transform3D(0.68881, 0, 0.724942, 0, 1, 0, -0.724942, 0, 0.68881, -2.23785, 0, -3.21263)
+
+[node name="Woodbox" type="MeshInstance3D" parent="WoodBox3"]
+material_override = ExtResource("4_di2kt")
+mesh = ExtResource("5_23q5d")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WoodBox3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00351334, 0.411062, -0.00799561)
+shape = SubResource("BoxShape3D_iid0r")
+
+[node name="WoodBox" type="StaticBody3D" parent="."]
+transform = Transform3D(0.918915, 0, 0.394455, 0, 1, 0, -0.394455, 0, 0.918915, 1.40905, 0, -2.6176)
+
+[node name="Woodbox" type="MeshInstance3D" parent="WoodBox"]
+material_override = ExtResource("4_di2kt")
+mesh = ExtResource("5_23q5d")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WoodBox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00351334, 0.411062, -0.00799561)
+shape = SubResource("BoxShape3D_iid0r")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.758589, 0.651569, 0, -0.651569, 0.758589, -1.24795, 6.57817, 9.1736)
+light_color = Color(0.694118, 0.745098, 0.862745, 1)
+light_energy = 0.838
+shadow_enabled = true
+shadow_blur = 1.165
+directional_shadow_mode = 1
+directional_shadow_fade_start = 0.762
+directional_shadow_max_distance = 103.5
+sky_mode = 1
+
+[node name="Fence2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.496095, 0, 0.868268, 0, 1, 0, -0.868268, 0, 0.496095, -8.80917, -2.38419e-07, -4.2977)
+material_override = ExtResource("6_og13i")
+mesh = ExtResource("7_avqpa")
+skeleton = NodePath("../Fence")
+
+[node name="Fence" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0795204, 0, 0.996833, 0, 1, 0, -0.996833, 0, 0.0795204, -9.30869, 0, 1.73993)
+material_override = ExtResource("6_og13i")
+mesh = ExtResource("7_avqpa")
+
+[node name="Ghost" parent="." instance=ExtResource("8_38jox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.41271)
