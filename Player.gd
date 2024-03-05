@@ -14,8 +14,11 @@ var ammo = 10
 
 var headbob = 0.0
 
+var recoil = 0.0
+
 var headbobTimer = 0.0
 var reloading = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mouseDelta = Vector2(0,0)
@@ -30,14 +33,20 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward");
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y).normalized());
 	head.rotation.z = lerp(head.rotation.z, -input_dir.x*0.065, delta*5.0);
+	recoil = lerp(recoil, 0.0, delta*10)
 	if (direction):
 		var lerpspeed = 6
 		if (not is_on_floor()):
 			lerpspeed = 4
 		velocity.x = lerpf(velocity.x, direction.x * speed, delta*lerpspeed)
 		velocity.z = lerpf(velocity.z, direction.z * speed, delta*lerpspeed)
-		headbobTimer +=delta
-		headbob = sin(headbobTimer*15.0) * 0.05
+		var headbob_target = 0
+		if (is_on_floor()):
+			headbobTimer +=delta
+			headbob_target = sin(headbobTimer*15.0) * 0.08
+		else:
+			headbob_target = velocity.y*0.05
+		headbob = lerp(headbob, headbob_target, delta * 14)
 		
 	else:
 		if (is_on_floor()):	
@@ -59,14 +68,18 @@ func _input(event):
 			head.rotation.x = range
 		if (head.rotation.x < -range):
 			head.rotation.x = -range
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	head.position.y = 1.5+headbob;
-
+	head.get_node("Camera3D").rotation.x = recoil
 	gun.position.y = headbob*1.0
-	if (Input.is_action_just_pressed("fire") and reloading == false):
+	var animPos = animPlayer.current_animation_position
+	print("head rotation: " + str(head.rotation))
+	if (Input.is_action_just_pressed("fire") and reloading == false and (animPos == 0 or animPos > 0.25)):
 		animPlayer.stop(true)
 		animPlayer.play("Armature|Fire")
+		recoil += 0.1
 		ammo-=1
 		$Audio.pitch_scale = 1.0 + randf_range(-0.01, 0.01)
 		$Audio.play()

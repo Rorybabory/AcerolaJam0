@@ -36,23 +36,23 @@ transform = Transform3D(-0.78904, -0.20406, 7.12496e-08, -0.20406, 0.78904, 0, -
 environment = ExtResource("2_ck2ss")
 
 [node name="Vignette" type="Sprite2D" parent="."]
-position = Vector2(576, 324)
-scale = Vector2(0.6, 0.6)
+position = Vector2(640, 360)
+scale = Vector2(0.666, 0.666)
 texture = ExtResource("4_qhg5m")
 
 [node name="AmmoCount" type="Sprite2D" parent="."]
-position = Vector2(1071, 609)
+position = Vector2(1166.75, 677.5)
 scale = Vector2(0.107447, 0.107447)
 texture = ExtResource("4_snkbr")
 
 [node name="number" parent="." instance=ExtResource("4_6exwp")]
-position = Vector2(1034, 569)
+position = Vector2(1129.75, 637.5)
 
 [node name="Audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_8do5w")
 volume_db = -14.991
 
 [node name="Crosshair" type="Sprite2D" parent="."]
-position = Vector2(576, 324)
+position = Vector2(640, 360)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("8_ee82l")
