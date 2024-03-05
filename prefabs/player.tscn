@@ -33,7 +33,7 @@ fov = 90.0
 transform = Transform3D(-0.78904, -0.20406, 7.12496e-08, -0.20406, 0.78904, 0, -6.89801e-08, -1.78395e-08, -0.815, 0.5, -0.5, -0.8)
 
 [node name="ScopePos" type="Node3D" parent="head/Camera3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.42, -0.63)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.42, -0.763222)
 
 [node name="GunPos" type="Node3D" parent="head/Camera3D"]
 transform = Transform3D(-0.968148, -0.25038, -8.74228e-08, -0.25038, 0.968148, 0, 8.46382e-08, 2.18889e-08, -1, 0.5, -0.5, -0.8)

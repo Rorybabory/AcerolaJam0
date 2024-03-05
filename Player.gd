@@ -25,6 +25,8 @@ var gunBase
 
 var scopeIn = false
 
+var camera
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mouseDelta = Vector2(0,0)
@@ -34,6 +36,7 @@ func _ready():
 	gunBase = get_node("head/Camera3D/Gun")
 	gunPos = get_node("head/Camera3D/GunPos")
 	scopePos = get_node("head/Camera3D/ScopePos")
+	camera = get_node("head/Camera3D")
 	pass # Replace with function body.
 	
 func _physics_process(delta):
@@ -85,16 +88,22 @@ func _process(delta):
 	head.get_node("Camera3D").rotation.x = recoil
 	
 	if (scopeIn):
-		gunBase.position = scopePos.position;
+		gunBase.position = gunBase.position.lerp(scopePos.position, delta * 10);
 		gunBase.rotation = scopePos.rotation;
+		camera.fov = lerp(camera.fov, 40.0, delta*7.0)
 	else:
-		gunBase.position = gunPos.position;
+		gunBase.position = gunBase.position.lerp(gunPos.position + Vector3(0, headbob + sin(headbobTimer*1.3)*0.03, 0), delta * 10);
+		
 		gunBase.rotation = gunPos.rotation;
-		gunBase.position.y += headbob + sin(headbobTimer*1.3)*0.03
+
+		camera.fov = lerp(camera.fov, 95.0, delta*7.0)
 	var animPos = animPlayer.current_animation_position
 	print("head rotation: " + str(head.rotation))
-	if (Input.is_action_just_pressed("alt_fire")):
-		scopeIn = not scopeIn
+	if (Input.is_action_pressed("alt_fire")):
+		scopeIn = true
+		
+	else:
+		scopeIn = false
 	if (Input.is_action_just_pressed("fire") and reloading == false and (animPos == 0 or animPos > 0.25)):
 		animPlayer.stop(true)
 		animPlayer.play("Armature|Fire")
