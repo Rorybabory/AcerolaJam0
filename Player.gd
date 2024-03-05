@@ -9,6 +9,8 @@ var mouse_sens = 0.1
 var gun
 var animPlayer
 @onready var head = $head
+var gunPos
+var scopePos
 var gunOffset = 0
 var ammo = 10
 
@@ -19,12 +21,19 @@ var recoil = 0.0
 var headbobTimer = 0.0
 var reloading = false
 
+var gunBase
+
+var scopeIn = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mouseDelta = Vector2(0,0)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	animPlayer = get_node("head/Camera3D/Gun/AnimationPlayer")
 	gun = get_node("head/Camera3D/Gun/RootNode")
+	gunBase = get_node("head/Camera3D/Gun")
+	gunPos = get_node("head/Camera3D/GunPos")
+	scopePos = get_node("head/Camera3D/ScopePos")
 	pass # Replace with function body.
 	
 func _physics_process(delta):
@@ -33,7 +42,8 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward");
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y).normalized());
 	head.rotation.z = lerp(head.rotation.z, -input_dir.x*0.065, delta*5.0);
-	recoil = lerp(recoil, 0.0, delta*10)
+	recoil = lerp(recoil, 0.0, delta*2.5)
+	headbobTimer +=delta
 	if (direction):
 		var lerpspeed = 6
 		if (not is_on_floor()):
@@ -42,7 +52,7 @@ func _physics_process(delta):
 		velocity.z = lerpf(velocity.z, direction.z * speed, delta*lerpspeed)
 		var headbob_target = 0
 		if (is_on_floor()):
-			headbobTimer +=delta
+			
 			headbob_target = sin(headbobTimer*15.0) * 0.08
 		else:
 			headbob_target = velocity.y*0.05
@@ -73,13 +83,22 @@ func _input(event):
 func _process(delta):
 	head.position.y = 1.5+headbob;
 	head.get_node("Camera3D").rotation.x = recoil
-	gun.position.y = headbob*1.0
+	
+	if (scopeIn):
+		gunBase.position = scopePos.position;
+		gunBase.rotation = scopePos.rotation;
+	else:
+		gunBase.position = gunPos.position;
+		gunBase.rotation = gunPos.rotation;
+		gunBase.position.y += headbob + sin(headbobTimer*1.3)*0.03
 	var animPos = animPlayer.current_animation_position
 	print("head rotation: " + str(head.rotation))
+	if (Input.is_action_just_pressed("alt_fire")):
+		scopeIn = not scopeIn
 	if (Input.is_action_just_pressed("fire") and reloading == false and (animPos == 0 or animPos > 0.25)):
 		animPlayer.stop(true)
 		animPlayer.play("Armature|Fire")
-		recoil += 0.1
+		recoil += 0.12
 		ammo-=1
 		$Audio.pitch_scale = 1.0 + randf_range(-0.01, 0.01)
 		$Audio.play()
