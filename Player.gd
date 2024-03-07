@@ -82,6 +82,18 @@ func _input(event):
 		if (head.rotation.x < -range):
 			head.rotation.x = -range
 		
+func gunRaycast():
+	var space_state = get_world_3d().direct_space_state
+	var aim = camera.get_global_transform().basis
+	var forward = -aim.z
+	var query = PhysicsRayQueryParameters3D.create(camera.global_position, camera.global_position+forward*300)
+	var result = space_state.intersect_ray(query)
+	if (result):
+		print("position:" + str(result.position))
+		print("hit object: " + str(result.collider))
+		if (result.collider.has_method("when_hit")):
+			result.collider.when_hit()
+	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	head.position.y = 1.5+headbob;
@@ -98,7 +110,6 @@ func _process(delta):
 
 		camera.fov = lerp(camera.fov, 95.0, delta*7.0)
 	var animPos = animPlayer.current_animation_position
-	print("head rotation: " + str(head.rotation))
 	if (Input.is_action_pressed("alt_fire")):
 		scopeIn = true
 		
@@ -111,6 +122,7 @@ func _process(delta):
 		ammo-=1
 		$Audio.pitch_scale = 1.0 + randf_range(-0.01, 0.01)
 		$Audio.play()
+		gunRaycast()
 	if (Input.is_action_just_pressed("pause")):
 		if (Input.mouse_mode == Input.MOUSE_MODE_CAPTURED):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

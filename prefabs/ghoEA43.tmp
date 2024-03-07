@@ -40,11 +40,10 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_2g2wo")
 
 [node name="Ghost" type="CharacterBody3D" groups=["Ghost"]]
-axis_lock_angular_z = true
 script = ExtResource("1_1sps5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.833, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.863105, 0)
 shape = SubResource("CapsuleShape3D_7esjg")
 
 [node name="Model" type="MeshInstance3D" parent="."]

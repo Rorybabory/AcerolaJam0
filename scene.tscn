@@ -94,6 +94,10 @@ transform = Transform3D(0.0795204, 0, 0.996833, 0, 1, 0, -0.996833, 0, 0.0795204
 material_override = ExtResource("6_og13i")
 mesh = ExtResource("7_avqpa")
 
+[node name="Ghost2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_38jox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.32404, 0, 6.12975)
+player = NodePath("../Player")
+
 [node name="Ghost" parent="." node_paths=PackedStringArray("player") instance=ExtResource("8_38jox")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.41271)
 player = NodePath("../Player")
