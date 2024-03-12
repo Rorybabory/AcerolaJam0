@@ -27,8 +27,16 @@ var scopeIn = false
 
 var camera
 
+var screenshake = Vector3(0,0,0)
+var shake_value = 0
+var health = 10.0
+var healthbar
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	mouseDelta = Vector2(0,0)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	animPlayer = get_node("head/Camera3D/Gun/AnimationPlayer")
@@ -37,8 +45,17 @@ func _ready():
 	gunPos = get_node("head/Camera3D/GunPos")
 	scopePos = get_node("head/Camera3D/ScopePos")
 	camera = get_node("head/Camera3D")
+	healthbar = get_node("Healthbar/Bar")
+
+	animPlayer.stop()
 	pass # Replace with function body.
-	
+
+func when_hit(damage):
+	print("HIT PLAYER")
+	shake_value = damage*4
+	health -= damage
+	pass
+
 func _physics_process(delta):
  
 	velocity.y -= GRAVITY * get_process_delta_time()
@@ -89,16 +106,21 @@ func gunRaycast():
 	var query = PhysicsRayQueryParameters3D.create(camera.global_position, camera.global_position+forward*300)
 	var result = space_state.intersect_ray(query)
 	if (result):
-		print("position:" + str(result.position))
-		print("hit object: " + str(result.collider))
+		#print("position:" + str(result.position))
+		#print("hit object: " + str(result.collider))
 		if (result.collider.has_method("when_hit")):
 			result.collider.when_hit()
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	head.position.y = 1.5+headbob;
+	screenshake = Vector3(randf_range(-1, 1), randf_range(-1, 1), randf_range(-1, 1)) * delta
+	head.position.y = 1.5+headbob
+	head.position.x = 0
+	head.position.z = 0
+	head.position += screenshake * shake_value
+	shake_value = lerpf(shake_value, 0.0, delta*4.5)
 	head.get_node("Camera3D").rotation.x = recoil
-	
+	healthbar.scale.x = health/10.0
 	if (scopeIn):
 		gunBase.position = gunBase.position.lerp(scopePos.position, delta * 10);
 		gunBase.rotation = scopePos.rotation;
@@ -109,13 +131,17 @@ func _process(delta):
 		gunBase.rotation = gunPos.rotation;
 
 		camera.fov = lerp(camera.fov, 95.0, delta*7.0)
-	var animPos = animPlayer.current_animation_position
+	var animPos = 0
+	if (animPlayer.current_animation == ""):
+		animPos = 0
+	else:
+		animPos = animPlayer.current_animation_position
 	if (Input.is_action_pressed("alt_fire")):
 		scopeIn = true
 		
 	else:
 		scopeIn = false
-	if (Input.is_action_just_pressed("fire") and reloading == false and (animPos == 0 or animPos > 0.25)):
+	if (Input.is_action_just_pressed("fire") and reloading == false and (animPos == 0 or animPos > 0.2)):
 		animPlayer.stop(true)
 		animPlayer.play("Armature|Fire")
 		recoil += 0.12

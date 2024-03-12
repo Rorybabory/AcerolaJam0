@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://4wen72ficix6"]
+
+[ext_resource type="Shader" path="res://materials/ghost.gdshader" id="1_1g3yp"]
+[ext_resource type="Texture2D" uid="uid://ckdlrcl0mkf66" path="res://textures/ghost2.png" id="1_n6ovp"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1g3yp")
+shader_parameter/time = 0.5
+shader_parameter/tex = ExtResource("1_n6ovp")

@@ -1,7 +1,10 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bjf3hlaug7bro"]
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://uglhw3o862yh"]
 
 [ext_resource type="Texture2D" uid="uid://ba7h67ini45h7" path="res://textures/ghost.png" id="1_6v660"]
+[ext_resource type="Shader" path="res://materials/ghost.gdshader" id="1_r63jw"]
 
 [resource]
-cull_mode = 2
-albedo_texture = ExtResource("1_6v660")
+render_priority = 0
+shader = ExtResource("1_r63jw")
+shader_parameter/time = 0.5
+shader_parameter/tex = ExtResource("1_6v660")

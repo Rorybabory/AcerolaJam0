@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://8lhcq2wagsqa"]
+[gd_scene load_steps=11 format=3 uid="uid://8lhcq2wagsqa"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_1j2nc"]
 [ext_resource type="Environment" uid="uid://te10uitoyw3c" path="res://environment.tres" id="2_ck2ss"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://8y0uwp4ucjgl" path="res://textures/ammo_count.png" id="4_snkbr"]
 [ext_resource type="AudioStream" uid="uid://dl8efn7xht1be" path="res://sounds/gunshot.wav" id="6_8do5w"]
 [ext_resource type="Texture2D" uid="uid://cjm48qb5sk0sm" path="res://textures/crosshair.png" id="8_ee82l"]
+[ext_resource type="Texture2D" uid="uid://b7aj6h50d4vb8" path="res://textures/healthbar.png" id="9_ft1vw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_65fle"]
 height = 1.9
@@ -62,3 +63,18 @@ volume_db = -28.108
 position = Vector2(640, 360)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("8_ee82l")
+
+[node name="Healthbar" type="Sprite2D" parent="."]
+position = Vector2(209, 674)
+scale = Vector2(0.173656, 0.173656)
+texture = ExtResource("9_ft1vw")
+
+[node name="Bar" type="Node2D" parent="Healthbar"]
+position = Vector2(-1157.46, 0)
+
+[node name="Bar" type="ColorRect" parent="Healthbar/Bar"]
+offset_left = -5.53928
+offset_top = -58.0
+offset_right = 2107.46
+offset_bottom = 98.0
+color = Color(0, 0, 0, 0.588235)
