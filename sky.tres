@@ -6,6 +6,7 @@ sky_horizon_color = Color(0.0627451, 0.0980392, 0.121569, 1)
 sky_cover_modulate = Color(0.458824, 0.458824, 0.458824, 1)
 ground_bottom_color = Color(0, 0, 0, 1)
 ground_horizon_color = Color(0.0627451, 0.0980392, 0.121569, 1)
+sun_angle_max = 0.0
 
 [resource]
 sky_material = SubResource("ProceduralSkyMaterial_p1xel")

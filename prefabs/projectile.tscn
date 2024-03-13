@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://e3qcvccbhsop"]
 
 [ext_resource type="Script" path="res://scripts/projectile.gd" id="1_esnm2"]
-[ext_resource type="Material" uid="uid://dobwc8q83gryq" path="res://materials/paper.tres" id="2_nytb8"]
+[ext_resource type="Material" uid="uid://bd0q5besic2cf" path="res://materials/projectile.tres" id="2_yh6xr"]
 [ext_resource type="ArrayMesh" uid="uid://bw36s114h4lok" path="res://models/crumple.obj" id="3_xqj44"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tf83i"]
@@ -15,7 +15,7 @@ shape = SubResource("SphereShape3D_tf83i")
 
 [node name="Crumple" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.22, 0, 0, 0, 0.22, 0, 0, 0, 0.22, -0.00353512, 1.49012e-08, -0.0053497)
-material_override = ExtResource("2_nytb8")
+material_override = ExtResource("2_yh6xr")
 mesh = ExtResource("3_xqj44")
 
 [connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

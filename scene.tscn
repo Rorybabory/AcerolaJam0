@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b4qv6xwtk4fuo"]
+[gd_scene load_steps=22 format=3 uid="uid://b4qv6xwtk4fuo"]
 
 [ext_resource type="PackedScene" uid="uid://8lhcq2wagsqa" path="res://prefabs/player.tscn" id="1_bswf1"]
 [ext_resource type="Material" uid="uid://dobwc8q83gryq" path="res://materials/paper.tres" id="2_abbep"]
@@ -11,6 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://cob4vseqeqm5o" path="res://prefabs/ghost2.tscn" id="9_ye02i"]
 [ext_resource type="Material" uid="uid://dni21wnihu73d" path="res://materials/house.tres" id="10_w6852"]
 [ext_resource type="ArrayMesh" uid="uid://c1xhanfrssuli" path="res://models/house.obj" id="11_mu5rg"]
+[ext_resource type="Material" uid="uid://ls2gjlrq7yim" path="res://materials/moon.tres" id="12_54n86"]
+[ext_resource type="AudioStream" uid="uid://bymxcfm7gpkqj" path="res://sounds/music.wav" id="13_tp4jn"]
+[ext_resource type="ArrayMesh" uid="uid://v308yn36mknu" path="res://models/trees.obj" id="14_o543l"]
+[ext_resource type="Material" uid="uid://wl8gua2jxyr5" path="res://materials/tree.tres" id="15_cthub"]
+[ext_resource type="Material" uid="uid://01xjlee6r4du" path="res://materials/treecard.tres" id="16_j3463"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iy5ye"]
 size = Vector3(80, 1, 80)
@@ -20,6 +25,11 @@ size = Vector3(80, 1, 80)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iid0r"]
 size = Vector3(0.969872, 1.06433, 0.960815)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iau2e"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_unso6"]
+size = Vector2(30.405, 7.335)
 
 [node name="Scene" type="Node3D"]
 
@@ -36,11 +46,6 @@ shape = SubResource("BoxShape3D_iy5ye")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 material_override = ExtResource("2_abbep")
 mesh = SubResource("BoxMesh_hr7xp")
-
-[node name="Tree2" parent="." instance=ExtResource("3_jolvg")]
-transform = Transform3D(0.441913, 0, 0.897058, 0, 1, 0, -0.897058, 0, 0.441913, -4.85153, 0, -2.56172)
-
-[node name="Tree" parent="." instance=ExtResource("3_jolvg")]
 
 [node name="WoodBox2" type="StaticBody3D" parent="."]
 transform = Transform3D(0.789052, 0, 0.614327, 0, 1, 0, -0.614327, 0, 0.789052, -1.42519, 0, 1.30874)
@@ -77,9 +82,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00351334, 0.411062, -0.007
 shape = SubResource("BoxShape3D_iid0r")
 
 [node name="Fence" parent="." instance=ExtResource("8_7oxuc")]
+transform = Transform3D(0.821766, 0, -0.569825, 0, 1, 0, 0.569825, 0, 0.821766, -10.9797, 0, 6.09738)
 
 [node name="Fence2" parent="Fence" instance=ExtResource("8_7oxuc")]
 transform = Transform3D(0.897667, 0, 0.440675, 0, 1, 0, -0.440675, 0, 0.897667, 5.95811, -4.76837e-07, -0.0042944)
+
+[node name="Fence3" parent="Fence" instance=ExtResource("8_7oxuc")]
+transform = Transform3D(0.293107, 0, 0.95608, 0, 1, 0, -0.95608, 0, 0.293107, 11.3358, -4.76837e-07, -2.62324)
+
+[node name="Fence4" parent="Fence" instance=ExtResource("8_7oxuc")]
+transform = Transform3D(-0.0375028, -0.00251886, 0.999294, 0.00485916, 0.999985, 0.00270297, -0.999285, 0.00495709, -0.0374901, 13.0995, -4.76837e-07, -8.27286)
+
+[node name="Fence5" parent="Fence" instance=ExtResource("8_7oxuc")]
+transform = Transform3D(-0.423346, -0.000391708, 0.90597, 0.00485916, 0.999985, 0.00270297, -0.905956, 0.00554653, -0.423337, 12.8846, -4.76837e-07, -14.1986)
+
+[node name="Fence6" parent="Fence" instance=ExtResource("8_7oxuc")]
+transform = Transform3D(-0.829431, 0.00252048, 0.558605, 0.00485916, 0.999985, 0.00270297, -0.55859, 0.00495627, -0.829431, 10.4043, -4.76837e-07, -19.5878)
+
+[node name="Fence7" parent="Fence" instance=ExtResource("8_7oxuc")]
+transform = Transform3D(-0.816923, 0.0055285, -0.576724, 0.00485916, 0.999985, 0.00270297, 0.576729, -0.000594275, -0.816937, 5.40104, 1.7053e-13, -22.9326)
+
+[node name="Fence8" parent="Fence" instance=ExtResource("8_7oxuc")]
+transform = Transform3D(-0.868975, 0.00556007, -0.494829, 0.00485916, 0.999985, 0.00270297, 0.494836, -5.56372e-05, -0.868988, 0.449434, 1.7053e-13, -19.4991)
+
+[node name="Fence9" parent="Fence" instance=ExtResource("8_7oxuc")]
+transform = Transform3D(-0.249529, 0.00383, -0.968362, 0.00485916, 0.999985, 0.00270296, 0.968357, -0.00403095, -0.249543, -4.72592, 1.7053e-13, -16.5599)
+
+[node name="Fence10" parent="Fence" instance=ExtResource("8_7oxuc")]
+transform = Transform3D(0.304155, 0.00154236, -1.11739, 0.00562713, 1.15803, 0.00313016, 1.11738, -0.00625169, 0.304144, -6.24339, 1.7053e-13, -10.7848)
+
+[node name="Fence11" parent="Fence" instance=ExtResource("8_7oxuc")]
+transform = Transform3D(0.723421, -0.00164909, -0.690408, 0.00485916, 0.999985, 0.00270297, 0.690393, -0.00531018, 0.723418, -4.30661, 1.7053e-13, -4.09659)
 
 [node name="Spawner" type="Node3D" parent="." node_paths=PackedStringArray("player", "spawnPoints")]
 script = ExtResource("9_8thr5")
@@ -91,13 +124,13 @@ ghosts = Array[PackedScene]([ExtResource("8_38jox"), ExtResource("9_ye02i")])
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.38895, 1.90735e-06, -7.47215)
 
 [node name="spawn2" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.00253, 9.53674e-07, -8.33646)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.19321, 9.53674e-07, -7.64512)
 
 [node name="spawn3" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.56807, 9.53674e-07, 6.27663)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.70622, 9.53674e-07, 2.75275)
 
 [node name="spawn4" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.36971, 9.53674e-07, 4.8132)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3078, 9.53674e-07, 4.54688)
 
 [node name="House" type="MeshInstance3D" parent="."]
 transform = Transform3D(3.82802, 0, -3.27071, 0, 5.035, 0, 3.27071, 0, 3.82802, 17.4834, 0, -28.6842)
@@ -111,3 +144,89 @@ light_energy = 0.593
 shadow_enabled = true
 shadow_bias = 0.0
 shadow_blur = 6.556
+
+[node name="Moon" type="MeshInstance3D" parent="."]
+transform = Transform3D(43.75, 0, 0, 0, -24.0197, 36.5666, 0, -36.5666, -24.0197, 1.07889, 173.796, 272.633)
+material_override = ExtResource("12_54n86")
+mesh = SubResource("PlaneMesh_iau2e")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_tp4jn")
+autoplay = true
+
+[node name="Trees" type="Node3D" parent="."]
+
+[node name="Tree" parent="Trees" instance=ExtResource("3_jolvg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.14098, 0, 2.1788)
+
+[node name="Tree2" parent="Trees" instance=ExtResource("3_jolvg")]
+transform = Transform3D(0.317321, 0, 0.948318, 0, 1, 0, -0.948318, 0, 0.317321, 4.09676, 0, -7.02936)
+
+[node name="Tree3" parent="Trees" instance=ExtResource("3_jolvg")]
+transform = Transform3D(0.317321, 0, 0.948318, 0, 1, 0, -0.948318, 0, 0.317321, -6.27461, 0, -5.73336)
+
+[node name="Tree4" parent="Trees" instance=ExtResource("3_jolvg")]
+transform = Transform3D(0.317321, 0, 0.948318, 0, 1, 0, -0.948318, 0, 0.317321, -9.27417, 0, 3.40187)
+
+[node name="Trees2" type="MeshInstance3D" parent="."]
+transform = Transform3D(18.27, 0, 0, 0, 18.27, 0, 0, 0, 18.27, 0, 0, 0)
+mesh = ExtResource("14_o543l")
+surface_material_override/0 = ExtResource("15_cthub")
+
+[node name="Treecards" type="Node3D" parent="."]
+
+[node name="TreeCard" type="MeshInstance3D" parent="Treecards"]
+transform = Transform3D(-0.505507, 0, 0.862823, 0, 1, 0, -0.862823, 0, -0.505507, -26.8678, 3.48771, 18.6261)
+material_override = ExtResource("16_j3463")
+mesh = SubResource("QuadMesh_unso6")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("16_j3463")
+
+[node name="TreeCard6" type="MeshInstance3D" parent="Treecards"]
+transform = Transform3D(-0.991967, 0, 0.126493, 0, 1, 0, -0.126493, 0, -0.991967, -10.3109, 3.48771, 32.0291)
+material_override = ExtResource("16_j3463")
+mesh = SubResource("QuadMesh_unso6")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("16_j3463")
+
+[node name="TreeCard7" type="MeshInstance3D" parent="Treecards"]
+transform = Transform3D(-0.85435, 0, -0.519698, 0, 1, 0, 0.519698, 0, -0.85435, 16.8613, 3.48771, 31.7614)
+material_override = ExtResource("16_j3463")
+mesh = SubResource("QuadMesh_unso6")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("16_j3463")
+
+[node name="TreeCard8" type="MeshInstance3D" parent="Treecards"]
+transform = Transform3D(-0.326954, 0, -0.94504, 0, 1, 0, 0.94504, 0, -0.326954, 29.1788, 3.48771, 15.389)
+material_override = ExtResource("16_j3463")
+mesh = SubResource("QuadMesh_unso6")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("16_j3463")
+
+[node name="TreeCard2" type="MeshInstance3D" parent="Treecards"]
+transform = Transform3D(0.0975656, 0, 0.995229, 0, 1, 0, -0.995229, 0, 0.0975656, -35.329, 3.48771, -8.70321)
+material_override = ExtResource("16_j3463")
+mesh = SubResource("QuadMesh_unso6")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("16_j3463")
+
+[node name="TreeCard3" type="MeshInstance3D" parent="Treecards"]
+transform = Transform3D(0.462074, 0, 0.886841, 0, 1, 0, -0.886841, 0, 0.462074, -28.1269, 3.48771, -19.3969)
+material_override = ExtResource("16_j3463")
+mesh = SubResource("QuadMesh_unso6")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("16_j3463")
+
+[node name="TreeCard4" type="MeshInstance3D" parent="Treecards"]
+transform = Transform3D(0.969231, 0, -0.246153, 0, 1, 0, 0.246153, 0, 0.969231, -8.76978, 3.48771, -32.2043)
+material_override = ExtResource("16_j3463")
+mesh = SubResource("QuadMesh_unso6")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("16_j3463")
+
+[node name="TreeCard5" type="MeshInstance3D" parent="Treecards"]
+transform = Transform3D(0.904366, 0, 0.426758, 0, 1.19466, 0, -0.426758, 0, 0.904366, -18.147, 3.6086, -29.0752)
+material_override = ExtResource("16_j3463")
+mesh = SubResource("QuadMesh_unso6")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("16_j3463")

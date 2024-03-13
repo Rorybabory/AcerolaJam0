@@ -14,3 +14,6 @@ ssao_horizon = 0.09
 ssao_light_affect = 0.07
 ssil_radius = 2.9
 glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.156863, 0.172549, 0.2, 1)
+fog_light_energy = 1.83

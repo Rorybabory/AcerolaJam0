@@ -7,4 +7,5 @@
 render_priority = 0
 shader = ExtResource("1_r63jw")
 shader_parameter/time = 0.5
+shader_parameter/brightness = 0.02
 shader_parameter/tex = ExtResource("1_6v660")

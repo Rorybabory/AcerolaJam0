@@ -60,8 +60,8 @@ func spawn_projectile():
 	var proj = projectile.instantiate()
 	get_tree().root.get_child(0).add_child(proj)
 	var forward = -get_global_transform().basis.z
-	proj.global_position = global_position + Vector3(0, 1.3, 0) + Vector3(forward.x*0.7, 0, forward.z*0.7)
-	proj.velocity = forward * 15
+	proj.global_position = global_position + Vector3(0, 1.3, 0) + Vector3(forward.x*1.0, 0, forward.z*1.0).normalized()
+	proj.velocity = Vector3(forward.x, 0, forward.z).normalized() * 15
 	
 
 
