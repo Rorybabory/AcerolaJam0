@@ -22,7 +22,6 @@ bones/12/rotation = Quaternion(-0.00109171, 0.0131838, 0.996692, -0.0801895)
 bones/12/scale = Vector3(0.999999, 1, 0.999999)
 bones/13/rotation = Quaternion(-0.00273565, -0.000356511, -6.21258e-05, 0.999996)
 bones/15/rotation = Quaternion(5.97127e-17, 0.999699, -5.97127e-17, -0.0245175)
-bones/15/scale = Vector3(1, 1, 1)
 bones/17/rotation = Quaternion(6.61526e-17, 0.996476, -6.61526e-17, 0.0838778)
 
 [node name="Ghost" parent="RootNode/ghost/Skeleton3D" index="0"]

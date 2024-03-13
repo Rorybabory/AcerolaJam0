@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://8lhcq2wagsqa"]
+[gd_scene load_steps=12 format=3 uid="uid://8lhcq2wagsqa"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_1j2nc"]
 [ext_resource type="Environment" uid="uid://te10uitoyw3c" path="res://environment.tres" id="2_ck2ss"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dl8efn7xht1be" path="res://sounds/gunshot.wav" id="6_8do5w"]
 [ext_resource type="Texture2D" uid="uid://cjm48qb5sk0sm" path="res://textures/crosshair.png" id="8_ee82l"]
 [ext_resource type="Texture2D" uid="uid://b7aj6h50d4vb8" path="res://textures/healthbar.png" id="9_ft1vw"]
+[ext_resource type="Texture2D" uid="uid://b2vnkol3rg20o" path="res://textures/gameover.png" id="10_0non3"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_65fle"]
 height = 1.9
@@ -38,6 +39,11 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.
 
 [node name="GunPos" type="Node3D" parent="head/Camera3D"]
 transform = Transform3D(-0.968148, -0.25038, -8.74228e-08, -0.25038, 0.968148, 0, 8.46382e-08, 2.18889e-08, -1, 0.5, -0.5, -0.8)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.155602, -1.16354)
+light_color = Color(0.74902, 0.698039, 0.647059, 1)
+light_energy = 2.085
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_ck2ss")
@@ -78,3 +84,12 @@ offset_top = -58.0
 offset_right = 2107.46
 offset_bottom = 98.0
 color = Color(0, 0, 0, 0.588235)
+
+[node name="GameOver" type="TextureRect" parent="."]
+offset_left = 327.0
+offset_top = 180.0
+offset_right = 857.0
+offset_bottom = 710.0
+rotation = -0.188104
+texture = ExtResource("10_0non3")
+expand_mode = 1

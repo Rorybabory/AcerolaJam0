@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-var health = 10
+var health = 7
 @export var player : Node3D
 const SPEED = 3.0
 var timer = 0

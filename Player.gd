@@ -9,6 +9,9 @@ var mouse_sens = 0.1
 var gun
 var animPlayer
 @onready var head = $head
+
+var gameoverPos
+
 var gunPos
 var scopePos
 var gunOffset = 0
@@ -32,6 +35,7 @@ var shake_value = 0
 var health = 10.0
 var healthbar
 
+var alive = true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -46,7 +50,8 @@ func _ready():
 	scopePos = get_node("head/Camera3D/ScopePos")
 	camera = get_node("head/Camera3D")
 	healthbar = get_node("Healthbar/Bar")
-
+	gameoverPos = $GameOver.global_position
+	$GameOver.global_position = Vector2(-1000,-1000)
 	animPlayer.stop()
 	pass # Replace with function body.
 
@@ -57,7 +62,11 @@ func when_hit(damage):
 	pass
 
 func _physics_process(delta):
- 
+	if (alive == false):
+		$GameOver.global_position = gameoverPos
+		if Input.is_action_just_pressed("move_jump"):
+			get_tree().reload_current_scene()
+		return
 	velocity.y -= GRAVITY * get_process_delta_time()
 	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward");
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y).normalized());
@@ -91,6 +100,8 @@ func _physics_process(delta):
 	move_and_slide()
 func _input(event):
 	if event is InputEventMouseMotion:
+		if (alive == false):
+			return
 		rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
 		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
 		var range = (3.1415/2.0)*0.85
@@ -113,6 +124,11 @@ func gunRaycast():
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	if (alive == false):
+		rotation.z = lerp(rotation.z, -PI*0.5, delta*5)
+		return
+	
 	screenshake = Vector3(randf_range(-1, 1), randf_range(-1, 1), randf_range(-1, 1)) * delta
 	head.position.y = 1.5+headbob
 	head.position.x = 0
@@ -132,6 +148,12 @@ func _process(delta):
 
 		camera.fov = lerp(camera.fov, 95.0, delta*7.0)
 	var animPos = 0
+	
+	if (health <= 0):
+		alive = false
+		
+
+	
 	if (animPlayer.current_animation == ""):
 		animPos = 0
 	else:

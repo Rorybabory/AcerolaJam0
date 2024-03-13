@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dni21wnihu73d"]
+
+[ext_resource type="Texture2D" uid="uid://8ok1mdenfm0" path="res://textures/trimSheet.png" id="1_xb23t"]
+
+[resource]
+albedo_texture = ExtResource("1_xb23t")
