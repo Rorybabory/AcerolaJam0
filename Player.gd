@@ -51,7 +51,7 @@ func _ready():
 	camera = get_node("head/Camera3D")
 	healthbar = get_node("Healthbar/Bar")
 	gameoverPos = $GameOver.global_position
-	$GameOver.global_position = Vector2(-1000,-1000)
+	$GameOver.global_position = Vector2(0,-1000)
 	animPlayer.stop()
 	pass # Replace with function body.
 
@@ -63,7 +63,7 @@ func when_hit(damage):
 
 func _physics_process(delta):
 	if (alive == false):
-		$GameOver.global_position = gameoverPos
+		$GameOver.global_position = lerp($GameOver.global_position, gameoverPos, delta*10)
 		if Input.is_action_just_pressed("move_jump"):
 			get_tree().reload_current_scene()
 		return

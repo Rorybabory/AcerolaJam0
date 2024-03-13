@@ -41,7 +41,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.
 transform = Transform3D(-0.968148, -0.25038, -8.74228e-08, -0.25038, 0.968148, 0, 8.46382e-08, 2.18889e-08, -1, 0.5, -0.5, -0.8)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="head/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.155602, -1.16354)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.421047, -0.155602, -0.531981)
 light_color = Color(0.74902, 0.698039, 0.647059, 1)
 light_energy = 2.085
 

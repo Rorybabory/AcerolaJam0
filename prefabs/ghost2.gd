@@ -1,8 +1,8 @@
 extends CharacterBody3D
 
-var health = 7
+var health = 4
 @export var player : Node3D
-const SPEED = 3.0
+const SPEED = 4.0
 var timer = 0
 
 var mesh
@@ -29,7 +29,7 @@ func _physics_process(delta):
 	var targetRotation = atan2(player.global_position.x-self.global_position.x, 
 							player.global_position.z-self.global_position.z)+PI
 	
-	targetRotation += sin(timer*4.0) * 0.4
+	targetRotation += sin(timer*4.0) * 0.7
 	self.rotation.y = targetRotation
 	var dir = -basis.z * SPEED
 	self.velocity = Vector3(dir.x, self.velocity.y, dir.z)
