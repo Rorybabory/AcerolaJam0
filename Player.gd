@@ -1,6 +1,7 @@
 
 extends CharacterBody3D
 
+enum GUN {PISTOL, SHOTGUN}
 const GRAVITY = 9.81
 
 var mouseDelta
@@ -37,15 +38,18 @@ var healthbar
 
 var alive = true
 
+var activeGun = GUN.SHOTGUN
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 
 	mouseDelta = Vector2(0,0)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	animPlayer = get_node("head/Camera3D/Gun/AnimationPlayer")
-	gun = get_node("head/Camera3D/Gun/RootNode")
-	gunBase = get_node("head/Camera3D/Gun")
+
+	gunBase = get_node("head/Camera3D/Pistol")
+	animPlayer = get_node("head/Camera3D/Pistol/AnimationPlayer")
+	gun = get_node("head/Camera3D/Pistol/RootNode")
 	gunPos = get_node("head/Camera3D/GunPos")
 	scopePos = get_node("head/Camera3D/ScopePos")
 	camera = get_node("head/Camera3D")
@@ -128,6 +132,11 @@ func _process(delta):
 	if (alive == false):
 		rotation.z = lerp(rotation.z, -PI*0.5, delta*5)
 		return
+	
+	if (activeGun == GUN.SHOTGUN):
+		#get_node("head/Camera3D/Pistol").set_visible(false)
+		pass
+	
 	
 	screenshake = Vector3(randf_range(-1, 1), randf_range(-1, 1), randf_range(-1, 1)) * delta
 	head.position.y = 1.5+headbob

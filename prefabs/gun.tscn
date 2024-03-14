@@ -5,7 +5,7 @@
 [node name="Gun" instance=ExtResource("1_ncorj")]
 
 [node name="Skeleton3D" parent="RootNode/Armature" index="0"]
-bones/0/rotation = Quaternion(0.977497, -1.81459e-24, 1.75577e-17, 0.210948)
+bones/0/rotation = Quaternion(0.977497, -6.34667e-25, 1.75577e-17, 0.210948)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/rotation = Quaternion(0.210948, -2.75781e-07, -5.95149e-08, 0.977497)
 bones/3/rotation = Quaternion(0.911002, -4.53995e-25, 1.63633e-17, -0.412403)

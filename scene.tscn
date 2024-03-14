@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b4qv6xwtk4fuo"]
+[gd_scene load_steps=24 format=3 uid="uid://b4qv6xwtk4fuo"]
 
 [ext_resource type="PackedScene" uid="uid://8lhcq2wagsqa" path="res://prefabs/player.tscn" id="1_bswf1"]
 [ext_resource type="Material" uid="uid://dobwc8q83gryq" path="res://materials/paper.tres" id="2_abbep"]
@@ -16,6 +16,8 @@
 [ext_resource type="ArrayMesh" uid="uid://v308yn36mknu" path="res://models/trees.obj" id="14_o543l"]
 [ext_resource type="Material" uid="uid://wl8gua2jxyr5" path="res://materials/tree.tres" id="15_cthub"]
 [ext_resource type="Material" uid="uid://01xjlee6r4du" path="res://materials/treecard.tres" id="16_j3463"]
+[ext_resource type="Material" uid="uid://c43bokwq3h86s" path="res://materials/grass.tres" id="17_gsw02"]
+[ext_resource type="ArrayMesh" uid="uid://cg6rpbgm0c45i" path="res://models/grass.obj" id="18_judsm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iy5ye"]
 size = Vector3(80, 1, 80)
@@ -143,7 +145,7 @@ light_color = Color(0.192157, 0.211765, 0.254902, 1)
 light_energy = 0.593
 shadow_enabled = true
 shadow_bias = 0.0
-shadow_blur = 6.556
+shadow_blur = 2.811
 
 [node name="Moon" type="MeshInstance3D" parent="."]
 transform = Transform3D(43.75, 0, 0, 0, -24.0197, 36.5666, 0, -36.5666, -24.0197, 1.07889, 173.796, 272.633)
@@ -152,6 +154,7 @@ mesh = SubResource("PlaneMesh_iau2e")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_tp4jn")
+volume_db = -12.0
 autoplay = true
 
 [node name="Trees" type="Node3D" parent="."]
@@ -230,3 +233,113 @@ material_override = ExtResource("16_j3463")
 mesh = SubResource("QuadMesh_unso6")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("16_j3463")
+
+[node name="Grass" type="Node3D" parent="."]
+
+[node name="Grass" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(2.11, 0, 0, 0, 2.11, 0, 0, 0, 2.11, -3.53411, 0, -6.14249)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
+
+[node name="Grass2" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(1.64689, 0, 1.31903, 0, 2.11, 0, -1.31903, 0, 1.64689, -5.18295, 0, -1.14332)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
+
+[node name="Grass3" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(1.64689, 0, 1.31903, 0, 2.11, 0, -1.31903, 0, 1.64689, -3.4559, 0, 5.16164)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
+
+[node name="Grass4" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(2.06893, 0, -0.414277, 0, 2.11, 0, 0.414277, 0, 2.06893, -7.53093, 0, 0.718996)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
+
+[node name="Grass5" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(2.06893, 0, -0.414277, 0, 2.11, 0, 0.414277, 0, 2.06893, -8.96199, 0, -1.83615)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
+
+[node name="Grass6" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(2.06893, 0, -0.414277, 0, 2.11, 0, 0.414277, 0, 2.06893, -12.4795, 0, 0.177112)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
+
+[node name="Grass7" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(1.41586, 0, 1.56443, 0, 2.11, 0, -1.56443, 0, 1.41586, -11.4948, 0, 4.01342)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
+
+[node name="Grass8" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(-0.360811, 0, 2.07892, 0, 2.11, 0, -2.07892, 0, -0.360811, -6.85181, 0, 7.89526)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
+
+[node name="Grass9" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(-0.360811, 0, 2.07892, 0, 2.11, 0, -2.07892, 0, -0.360811, -5.66075, 0, 3.20256)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
+
+[node name="Grass10" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(-1.87388, 0, 0.969877, 0, 2.11, 0, -0.969877, 0, -1.87388, 1.2378, 0, 5.11423)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
+
+[node name="Grass11" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(-1.87388, 0, 0.969877, 0, 2.11, 0, -0.969877, 0, -1.87388, -0.218674, 0, -0.496617)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
+
+[node name="Grass12" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(-2.09204, 0, -0.27468, 0, 2.11, 0, 0.27468, 0, -2.09204, 5.88661, 0, -2.97404)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
+
+[node name="Grass13" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(-2.09204, 0, -0.27468, 0, 2.11, 0, 0.27468, 0, -2.09204, 8.68369, 0, 3.53335)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
+
+[node name="Grass14" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(-1.32081, 0, -1.64546, 0, 2.11, 0, 1.64546, 0, -1.32081, 7.87044, 0, -9.36429)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
+
+[node name="Grass15" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(-1.32081, 0, -1.64546, 0, 2.11, 0, 1.64546, 0, -1.32081, 10.0648, 0, -3.62034)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
+
+[node name="Grass16" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(-1.32081, 0, -1.64546, 0, 2.11, 0, 1.64546, 0, -1.32081, -0.0887699, 0, -6.68531)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
+
+[node name="Grass17" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(-1.32081, 0, -1.64546, 0, 2.11, 0, 1.64546, 0, -1.32081, 3.59843, 0, 2.95454)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
+
+[node name="Grass18" type="MeshInstance3D" parent="Grass"]
+transform = Transform3D(-1.32081, 0, -1.64546, 0, 2.11, 0, 1.64546, 0, -1.32081, 4.40235, 0, -7.8376)
+material_override = ExtResource("17_gsw02")
+mesh = ExtResource("18_judsm")
+skeleton = NodePath("../..")
